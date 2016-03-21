@@ -64,7 +64,6 @@
     "validate.js": "^0.9.0"
   },
   "devDependencies": {
-    "@remobile/react-native-splashscreen": "^1.0.3",
     "babel-core": "^6.4.5",
     "babel-eslint": "^5.0.0",
     "babel-jest": "^6.0.1",

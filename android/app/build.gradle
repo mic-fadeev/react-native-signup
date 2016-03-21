@@ -120,5 +120,4 @@ dependencies {
 
     // Add this line:
     compile project(':RNSimpleAlertDialogModule')
-    compile project(':react-native-splashscreen')
 }

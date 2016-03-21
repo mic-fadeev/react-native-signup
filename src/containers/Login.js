@@ -8,7 +8,6 @@ import * as authActions from "../reducers/auth/authActions";
 
 import { Map } from "immutable";
 
-
 const actions = [
   authActions,
 ];
@@ -79,7 +78,7 @@ const Login = React.createClass({
   render: function render() {
     let uri = "http://vignette2.wikia.nocookie.net/nickelodeon/images/4/4a/Paramount_logo.jpg";
     let error;
-
+    let loginButton;
     if (this.props.auth.err) {
       error = (
         <Text style={ { color: "red", fontStyle: "italic" } }>
@@ -87,6 +86,17 @@ const Login = React.createClass({
         </Text>
       );
     }
+
+    if (this.props.auth.status == "start") {
+      loginButton = (<Text style={{ fontWeight: "bold", color: "#00c7ba" }}>
+        loginning...
+      </Text>);
+    } else {
+      loginButton = (<Text style={{ fontWeight: "bold", color: "#00c7ba" }}>
+        Login
+      </Text>);
+    }
+
     return (
       <View>
         <Image
@@ -103,7 +113,7 @@ const Login = React.createClass({
         {error}
 
         <TouchableHighlight onPress={this.login} underlayColor="#99d9f4">
-          <Text style={{ color: "#00c7ba", fontWeight: "bold" }}>Login</Text>
+          {loginButton}
         </TouchableHighlight>
 
         <TouchableHighlight onPress={this.register} underlayColor="#99d9f4">

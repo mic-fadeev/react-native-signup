@@ -33,7 +33,7 @@ export function getProfile() {
           return Actions.Landing();
         });
       } else {
-        Actions.Register();
+        Actions.Login();
       }
     });
   }

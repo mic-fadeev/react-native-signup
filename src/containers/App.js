@@ -6,8 +6,6 @@ import { Map } from "immutable";
 import * as authActions from "../reducers/auth/authActions";
 import * as profileActions from "../reducers/profile/profileActions";
 
-import * as SplashScreen from "@remobile/react-native-splashscreen";
-
 import React,
 {
   StyleSheet,
@@ -66,7 +64,6 @@ let App = React.createClass({
   },
 
   componentDidMount() {
-    SplashScreen.hide();
     this.props.actions.getProfile();
   },
 

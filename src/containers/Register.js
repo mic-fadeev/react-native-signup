@@ -48,6 +48,10 @@ let Register = React.createClass({
     };
   },
 
+  componentWillUnmount() {
+    this.props.actions.clearAuthData();
+  },
+
   cancel() {
     Actions.Login();
   },
@@ -59,6 +63,7 @@ let Register = React.createClass({
 
   render() {
     let error;
+    let registerButton;
 
     if (this.props.auth.err) {
       error = (
@@ -68,6 +73,15 @@ let Register = React.createClass({
       );
     }
 
+    if (this.props.auth.status == "start") {
+      registerButton = (<Text style={{ fontWeight: "bold", color: "#00c7ba" }}>
+        register...
+      </Text>);
+    } else {
+      registerButton = (<Text style={{ fontWeight: "bold", color: "#00c7ba" }}>
+        Register
+      </Text>);
+    }
     return (
       <View>
         <TouchableHighlight onPress={this.cancel} underlayColor="#99d9f4">
@@ -79,7 +93,7 @@ let Register = React.createClass({
         {error}
 
         <TouchableHighlight onPress={this.register} underlayColor="#99d9f4">
-          <Text style={{ fontWeight: "bold", color: "#00c7ba" }}>Register</Text>
+          {registerButton}
         </TouchableHighlight>
 
       </View>
