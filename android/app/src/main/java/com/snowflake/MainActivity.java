@@ -1,4 +1,4 @@
-package com.snowflake;
+package com.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
 
-        mReactRootView.startReactApplication(mReactInstanceManager, "snowflake", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "testapp", null);
 
         setContentView(mReactRootView);
     }

@@ -41,7 +41,7 @@
     "start": "react-native start",
     "test:watch": "npm run test -- --watch",
     "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
-    "docs": "./node_modules/docker/docker -w -i src/ -o ../snowflake-pages "
+    "docs": "./node_modules/docker/docker -w -i src/ -o ../testapp-pages "
   },
   "dependencies": {
     "apsl-react-native-button": "git+https://git@github.com/bartonhammond/react-native-button.git",

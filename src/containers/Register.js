@@ -84,7 +84,7 @@ let Register = React.createClass({
     }
     return (
       <View>
-        <TouchableHighlight onPress={this.cancel} underlayColor="#99d9f4">
+        <TouchableHighlight onPress={this.cancel} underlayColor="#99d9f4" style={{ marginTop: 20 }}>
           <Text style={{ fontWeight: "bold" }}>Cancel</Text>
         </TouchableHighlight>
 

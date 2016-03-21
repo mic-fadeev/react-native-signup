@@ -69,7 +69,7 @@ workflows:
         - content: |-
             #!/bin/bash
 
-            keytool -genkey -noprompt -alias $SNOWFLAKE_RELEASE_KEY_ALIAS -dname "CN=snowflake.bartonhammond.org, OU=bartonhammond.org, O=Unknown, L=Austin, ST=TX, C=US" -keystore $SNOWFLAKE_RELEASE_STORE_FILE -storepass $SNOWFLAKE_RELEASE_STORE_PASSWORD -keypass $SNOWFLAKE_RELEASE_KEY_PASSWORD
+            keytool -genkey -noprompt -alias $SNOWFLAKE_RELEASE_KEY_ALIAS -dname "CN=testapp.bartonhammond.org, OU=bartonhammond.org, O=Unknown, L=Austin, ST=TX, C=US" -keystore $SNOWFLAKE_RELEASE_STORE_FILE -storepass $SNOWFLAKE_RELEASE_STORE_PASSWORD -keypass $SNOWFLAKE_RELEASE_KEY_PASSWORD
     - script@1.1.0:
         title: cp keystore
         inputs:

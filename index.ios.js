@@ -1,3 +1,3 @@
-import snowflake from "./src/snowflake";
+import testapp from "./src/testapp";
 
-snowflake("ios");
+testapp("ios");

@@ -4,14 +4,14 @@ platform :ios do
                 
         lane :beta do
             increment_build_number(
-              xcodeproj: './ios/snowflake.xcodeproj'
+              xcodeproj: './ios/testapp.xcodeproj'
             )
 
-            sh("xctool -project ../ios/snowflake.xcodeproj -scheme snowflake clean archive -archivePath ../build/snowflake")
+            sh("xctool -project ../ios/testapp.xcodeproj -scheme testapp clean archive -archivePath ../build/testapp")
 
-            sh("xcodebuild -exportArchive -exportFormat ipa -archivePath ../build/snowflake.xcarchive -exportPath ../build/snowflake.ipa -exportProvisioningProfile 'iOS Team Provisioning Profile: *'")        
+            sh("xcodebuild -exportArchive -exportFormat ipa -archivePath ../build/testapp.xcarchive -exportPath ../build/testapp.ipa -exportProvisioningProfile 'iOS Team Provisioning Profile: *'")        
 
-            sh("cp ../build/snowflake.ipa $BITRISE_DEPLOY_DIR")
+            sh("cp ../build/testapp.ipa $BITRISE_DEPLOY_DIR")
         end
 
 end

@@ -73,5 +73,5 @@ export default function native(platform) {
     },
   });
 
-  AppRegistry.registerComponent("snowflake", () => MobileApp);
+  AppRegistry.registerComponent("testapp", () => MobileApp);
 }

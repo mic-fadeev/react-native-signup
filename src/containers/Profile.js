@@ -7,8 +7,6 @@ import * as profileActions from "../reducers/profile/profileActions";
 
 import { Map } from "immutable";
 
-// import ItemCheckbox from "../components/ItemCheckbox";
-
 import React,
 {
   // StyleSheet,
@@ -50,10 +48,9 @@ const Profile = React.createClass({
   },
 
   render: function render() {
-    console.log(this.props.profile);
     return (
       <View>
-        <TouchableHighlight onPress={this.props.actions.logout} underlayColor="#99d9f4">
+        <TouchableHighlight onPress={this.props.actions.logout} underlayColor="#99d9f4" style={{ marginTop: 20 }}>
           <Text style={{ fontWeight: "bold" }}>Logout</Text>
         </TouchableHighlight>
         <Text>
