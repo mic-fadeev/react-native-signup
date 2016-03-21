@@ -9,9 +9,7 @@ import { Actions } from "react-native-router-flux";
 
 import React, { Text, View, TouchableHighlight } from "react-native";
 
-import RegisterStepOneForm from "../components/RegisterStepOneForm";
-import RegisterStepTwoForm from "../components/RegisterStepTwoForm";
-import RegisterStepThreeForm from "../components/RegisterStepThreeForm";
+import RegisterForm from "../components/RegisterStepOneForm";
 
 const actions = [
   authActions,
@@ -54,46 +52,20 @@ let Register = React.createClass({
     Actions.Login();
   },
 
-  completeStep() {
-    let form = this.refs.currentStep.refs.form.getValue();
-    if (form) {
-      form = Object.assign(this.state.form, form);
-      if (this.state.step != 3) {
-        this.setState({
-          form,
-          step: ++this.state.step,
-        });
-      } else {
-        this.props.actions.register(form);
-      }
-    }
+  register() {
+    let form = this.refs.registerForm.refs.form.getValue();
+    form && this.props.actions.register(form);
   },
 
   render() {
-    let CurrentStep;
     let error;
 
-    if (this.props.auth.statusCode == 403) {
-      error = (<Text style={ { color: "red", fontStyle: "italic" } }>
-          user doesn't exist
-        </Text>);
-    }
-
-    switch (this.state.step) {
-      case 1: {
-        CurrentStep = RegisterStepOneForm;
-        break;
-      }
-      case 2: {
-        CurrentStep = RegisterStepTwoForm;
-        break;
-      }
-      case 3: {
-        CurrentStep = RegisterStepThreeForm;
-        break;
-      }
-      default:
-        break;
+    if (this.props.auth.err) {
+      error = (
+        <Text style={ { color: "red", fontStyle: "italic" } }>
+          User with this email already exists.
+        </Text>
+      );
     }
 
     return (
@@ -101,15 +73,15 @@ let Register = React.createClass({
         <TouchableHighlight onPress={this.cancel} underlayColor="#99d9f4">
           <Text style={{ fontWeight: "bold" }}>Cancel</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.completeStep} underlayColor="#99d9f4">
-          <Text style={{ fontWeight: "bold", color: "#00c7ba" }}>Next</Text>
+
+        <RegisterForm ref="registerForm" />
+
+        {error}
+
+        <TouchableHighlight onPress={this.register} underlayColor="#99d9f4">
+          <Text style={{ fontWeight: "bold", color: "#00c7ba" }}>Register</Text>
         </TouchableHighlight>
 
-        <CurrentStep
-          ref="currentStep"
-          step={this.state.step}
-          completeStep={this.stepComplete}
-        />
       </View>
     );
   },

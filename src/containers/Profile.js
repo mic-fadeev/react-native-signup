@@ -50,14 +50,15 @@ const Profile = React.createClass({
   },
 
   render: function render() {
+    console.log(this.props.profile);
     return (
       <View>
-        <Text>
-          Well hello there, {this.props.profile.payerid}!
-        </Text>
         <TouchableHighlight onPress={this.props.actions.logout} underlayColor="#99d9f4">
           <Text style={{ fontWeight: "bold" }}>Logout</Text>
         </TouchableHighlight>
+        <Text>
+          Well hello there, user with id {this.props.profile.profile.uid}!
+        </Text>
       </View>
     );
   },

@@ -1,0 +1,20 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+  },
+  // To give you an idea how to override rule options:
+  "rules": {
+    "quotes": [1, "double"],
+    "eol-last": [0],
+    "no-mixed-requires": [0],
+    "no-underscore-dangle": [0],
+    "react/prefer-stateless-function": [0],
+    "react/prefer-es6-class": [0],
+    "prefer-const": [0],
+    "eqeqeq": [0],
+    "consistent-return": [0],
+    "new-cap": [0],
+  }
+}

@@ -1,4 +1,4 @@
-rootProject.name = 'snowflake'
+rootProject.name = 'testApp'
 
 include ':app'
 

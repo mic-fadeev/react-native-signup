@@ -1,10 +1,13 @@
 const {
   LOGIN_REQUEST,
+  CLEAR_AUTH_DATA,
 } = require("../../lib/constants").default;
 
 import { Actions } from "react-native-router-flux";
 import { AsyncStorage } from "react-native";
 import { setProfile } from "../profile/profileActions";
+
+import Firebase from "../../lib/Firebase";
 
 let loginStart = () => {
   return {
@@ -13,44 +16,35 @@ let loginStart = () => {
   };
 };
 
-let loginEnd = ({ status }) => {
+let loginEnd = (err) => {
   return {
     type: LOGIN_REQUEST,
     status: "end",
-    statusCode: status,
+    err: err,
   };
 };
 
 export function login({ email, password }) {
   return (dispatch) => {
     dispatch(loginStart());
-
-    return fetch("http://54.186.39.128:5010/user/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-    .then(
-      (response) => {
-        dispatch(loginEnd(response));
-        if (response.status == 200) {
-          let json = JSON.parse(response._bodyText)[0];
-          return dispatch(setProfile(json.payerid));
-        }
+    return Firebase.authWithPassword({ email, password }, (err, user) => {
+      dispatch(loginEnd(err));
+      if (user) {
+        return dispatch(setProfile(user));
       }
-    );
+    });
+  };
+}
+
+export function clearAuthData() {
+  return {
+    type: CLEAR_AUTH_DATA,
   };
 }
 
 export function logout() {
   return dispatch => {
-    AsyncStorage.removeItem("payerid", (error) => {
+    AsyncStorage.removeItem("token", (error) => {
       if (!error) {
         Actions.Login();
       }
@@ -61,22 +55,11 @@ export function logout() {
 export function register(form) {
   return (dispatch) => {
     dispatch(loginStart());
-    return fetch("http://54.186.39.128:5010/user", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...form, device_type: 1 }),
-    })
-    .then(
-      (response) => {
-        dispatch(loginEnd(response));
-        if (response.status == 200) {
-          let json = JSON.parse(response._bodyText)[0];
-          return dispatch(setProfile(json.payerid));
-        }
+    return Firebase.createUser(form, function (error, user) {
+      dispatch(loginEnd(error));
+      if (user) {
+        return dispatch(login(form));
       }
-    );
+    });
   };
 }

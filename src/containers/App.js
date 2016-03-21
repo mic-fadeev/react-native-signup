@@ -67,19 +67,15 @@ let App = React.createClass({
 
   componentDidMount() {
     SplashScreen.hide();
-    this.props.actions.setProfile();
+    this.props.actions.getProfile();
   },
 
   render() {
     return (
       <View style={ styles.container }>
         <Text>
-          Waitinig...
+          Waiting for user data...
         </Text>
-        <Image
-          style={ { width: 100, height: 100 } }
-          source={ { uri: "http://i.imgur.com/da4G0Io.png" } }
-        />
       </View>
     );
   },

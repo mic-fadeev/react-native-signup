@@ -1,5 +1,5 @@
 {
-  "name": "snowflake",
+  "name": "testApp",
   "version": "0.0.12",
   "private": true,
   "jest": {
@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "apsl-react-native-button": "git+https://git@github.com/bartonhammond/react-native-button.git",
+    "firebase": "^2.4.1",
     "immutable": "^3.7.6",
     "key-mirror": "^1.0.1",
     "react-native": "^0.18.1",

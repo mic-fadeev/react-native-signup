@@ -61,6 +61,10 @@ const Login = React.createClass({
     };
   },
 
+  componentWillUnmount() {
+    this.props.actions.clearAuthData();
+  },
+
   login: function login() {
     let form = this.refs.form.getValue();
     if (form) {
@@ -76,10 +80,12 @@ const Login = React.createClass({
     let uri = "http://vignette2.wikia.nocookie.net/nickelodeon/images/4/4a/Paramount_logo.jpg";
     let error;
 
-    if (this.props.auth.statusCode == 403) {
-      error = (<Text style={ { color: "red", fontStyle: "italic" } }>
-          user doesn't exist
-        </Text>);
+    if (this.props.auth.err) {
+      error = (
+        <Text style={ { color: "red", fontStyle: "italic" } }>
+          User with such credentials doesn't exist.
+        </Text>
+      );
     }
     return (
       <View>
@@ -97,7 +103,7 @@ const Login = React.createClass({
         {error}
 
         <TouchableHighlight onPress={this.login} underlayColor="#99d9f4">
-          <Text style={{ fontWeight: "bold" }}>Login</Text>
+          <Text style={{ color: "#00c7ba", fontWeight: "bold" }}>Login</Text>
         </TouchableHighlight>
 
         <TouchableHighlight onPress={this.register} underlayColor="#99d9f4">
